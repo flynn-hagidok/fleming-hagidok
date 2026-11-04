@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* #0F172A */
+/* #0D9488 */
+/* #64748B */
+
+
+html {
+    scroll-behavior: smooth;
+};
+
+section {
+    scroll-margin-top: 80px;
+}
