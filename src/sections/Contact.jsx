@@ -12,6 +12,13 @@ const Contact = () => {
 
     const handleForm = async (e) => {
         e.preventDefault();
+
+        // আগের feedback clear করবে
+        setFeedback({
+            type: "",
+            message: ""
+        });
+
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
@@ -238,7 +245,7 @@ const Contact = () => {
 
                         <button type="submit"
                             disabled={loading}
-                            className="mt-6 bg-[#0D9488] text-[#ffff] font-semibold px-4 py-2 rounded-md cursor-pointer active:scale-98 w-full"
+                            className="mt-6 bg-[#0D9488] text-[#ffff] font-semibold px-4 py-2 rounded-md cursor-pointer active:scale-98 w-full disabled:cursor-not-allowed"
                         >
                             {
                                 loading ? "Sending..." : "Send Message"

@@ -16,7 +16,10 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
-    }
+    },
+    connectionTimeout: 15000,
+    greetingTimeout: 15000,
+    socketTimeout: 20000,
 })
 
 // Express app create
@@ -156,12 +159,12 @@ const connectDB = async () => {
                     await transporter.sendMail({
                         from: `"Fleming.Dev" <${process.env.EMAIL_USER}>`,
                         to: process.env.RECEIVER_EMAIL,
-                        replyTo: email,
-                        subject: subject,
+                        replyTo: cleanEmail,
+                        subject: cleanSubject,
                         text: ` 
-                        Name: ${name},
-                        Email: ${email},
-                        Message: ${message}
+                        Name: ${cleanName},
+                        Email: ${cleanEmail},
+                        Message: ${cleanMessage}
                         `
                     })
                 } catch (emailError) {
