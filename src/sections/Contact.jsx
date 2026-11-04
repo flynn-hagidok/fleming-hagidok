@@ -68,7 +68,7 @@ const Contact = () => {
 
         try {
             setLoading(true);
-            const response = await fetch("https://fleming-hagidok.onrender.com", {
+            const response = await fetch("https://fleming-hagidok.onrender.com/messages", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
