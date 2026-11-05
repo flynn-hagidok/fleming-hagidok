@@ -4,7 +4,7 @@ import ScrollReveal from '../components/ui/ScrollReveal';
 
 const About = () => {
     return (
-        <div className="mx-auto max-w-7xl py-10 px-6 lg:px-0">
+        <div className="mx-auto max-w-7xl py-10 px-6">
             {/* section heading */}
             <div className='text-center space-y-2'>
                 <h2 className='font-bold text-2xl md:text-4xl text-[#0F172A]'>ABOUT ME</h2>

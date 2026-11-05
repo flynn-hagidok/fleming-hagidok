@@ -58,7 +58,7 @@ const Navbar = () => {
                     href="#home"
                     onClick={() => handleNavClick("home")}
                 >
-                    <span className="font-bold text-xl xl:text-3xl text-[#0F172A]">Fleming</span>
+                    <span className="font-bold text-xl lg:text-3xl text-[#0F172A]">Fleming</span>
                     <span className="text-[#0D9488] text-md font-semibold xl:text-xl">.Dev</span>
                 </a>
 

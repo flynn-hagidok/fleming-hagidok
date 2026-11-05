@@ -113,7 +113,7 @@ const Contact = () => {
     };
 
     return (
-        <div className="mx-auto max-w-7xl px-6 lg:px-0 py-10">
+        <div className="mx-auto max-w-7xl px-6 py-10">
             <div className="text-center">
                 <h2 className="text-2xl lg:text-4xl font-semibold text-[#0F172A]">Let's Work Together</h2>
                 <p className="text-[#64748B] text-sm lg:text-base mt-4">Have a project in mind? Let's discuss how we can work together.</p>

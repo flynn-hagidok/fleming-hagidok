@@ -5,7 +5,7 @@ import { projects } from "../data/projects";
 
 const Projects = () => {
     return (
-        <div className="mx-auto max-w-7xl py-10 px-6 lg:px-0">
+        <div className="mx-auto max-w-7xl py-10 px-6">
             {/* Section Heading */}
             <div className="mb-14 space-y-3 text-center">
                 <p className="font-bold tracking-widest text-[#0D9488]">

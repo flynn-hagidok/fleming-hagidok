@@ -3,7 +3,7 @@ import { skillCategories } from "../data/skills";
 
 const Skills = () => {
     return (
-        <section className="mx-auto max-w-7xl px-6 lg:px-0 py-16 lg:py-24">
+        <section className="mx-auto max-w-7xl px-6 py-16 lg:py-24">
 
             {/* Heading section */}
             <div className="text-center space-y-3">

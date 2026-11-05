@@ -3,7 +3,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import { socialLinks } from "../data/socials";
 
 const Hero = () => (
-    <div className="max-w-7xl mx-auto py-10 lg:py-20 md:grid md:grid-cols-2 gap-20 items-center justify-between px-6 lg:px-0">
+    <div className="max-w-7xl mx-auto py-10 lg:py-20 md:grid md:grid-cols-2 gap-20 items-center justify-between px-6">
         {/* left section */}
         {/* about me */}
         <div className="space-y-4">
