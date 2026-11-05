@@ -2,28 +2,21 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv")
 const { MongoClient } = require("mongodb");
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 
 // Environment variables load
 dotenv.config();
 const PORT = process.env.PORT || 3000;
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 //email transporter
-const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-    },
-    connectionTimeout: 15000,
-    greetingTimeout: 15000,
-    socketTimeout: 20000,
-})
+
 
 // Express app create
 const app = express();
+app.set("trust proxy", 1);
 
 //Secuirity Header 
 app.use(helmet());
@@ -152,33 +145,42 @@ const connectDB = async () => {
                 // MongoDB-তে data save
                 const result = await messageCollection.insertOne(newMessage);
 
-                // 2. Send email notification
+                // Email notification
                 let notificationSent = true;
 
                 try {
-                    await transporter.sendMail({
-                        from: `"Fleming.Dev" <${process.env.EMAIL_USER}>`,
-                        to: process.env.RECEIVER_EMAIL,
+                    const { data, error } = await resend.emails.send({
+                        from: "Fleming.Dev <onboarding@resend.dev>",
+                        to: [process.env.RECEIVER_EMAIL],
                         replyTo: cleanEmail,
                         subject: cleanSubject,
-                        text: ` 
-                        Name: ${cleanName},
-                        Email: ${cleanEmail},
-                        Message: ${cleanMessage}
-                        `
-                    })
+                        text: `
+Name: ${cleanName}
+Email: ${cleanEmail}
+Subject: ${cleanSubject}
+
+Message:
+${cleanMessage}
+        `
+                    });
+
+                    if (error) {
+                        throw new Error(error.message);
+                    }
+
+                    console.log("Email sent successfully:", data.id);
+
                 } catch (emailError) {
                     notificationSent = false;
-                    console.error("Email sending failed", emailError);
+                    console.error("Email sending failed:", emailError);
                 }
 
-                res.status(201).json({
+                return res.status(201).json({
                     success: true,
                     message: "Message saved successfully!",
                     notificationSent,
                     insertedId: result.insertedId
-                })
-
+                });
             } catch (error) {
                 console.error("Message save failed:", error);
                 res.status(500).json({
